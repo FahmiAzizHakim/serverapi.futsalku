@@ -11,7 +11,15 @@ class M_master extends CI_Model {
 	function getDataWhere($where, $param, $table)
 	{
 		$this->db->where($where, $param);
+		$this->db->where('activestatus', 'ATSAC');
 		return $this->db->get($table)->result();
+	}
+
+	function getCodebyCategory($param)
+	{
+		$this->db->where('code_category', $param);
+		$this->db->where('activestatus', 'ATSAC');
+		return $this->db->get('GLB_DTACODE')->result();
 	}
 }
 ?>
