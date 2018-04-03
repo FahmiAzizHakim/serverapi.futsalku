@@ -56,6 +56,15 @@ class Master_data extends REST_Controller {
         $this->response($data, 200);
     }
 
+    function data_goods_get(){
+       if($this->get('company_code') == null){
+            $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
+        }
+        $company_code = $this->get('company_code');
+        $data = $this->M_master->getDataWhere('company_code', $company_code, 'MST_ADMSTOREGOODS');
+        $this->response($data, 200);         
+    }
+
     //Masukan function selanjutnya disini
 }
 ?>
