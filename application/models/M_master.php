@@ -36,5 +36,12 @@ class M_master extends CI_Model {
 		    return true;
 		}else return false;
 	}
+
+	function getDataWhere2($where, $param, $table)
+	{
+		$this->db->where($where, $param);
+		$this->db->where('activestatus', 'ATSAC');
+		return $this->db->get($table)->row_array();
+	}
 }
 ?>

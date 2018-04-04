@@ -65,7 +65,16 @@ class Master_data extends REST_Controller {
         $this->response($data, 200);         
     }
 
-    function last_no_get()
+	function data_company_get(){
+       if($this->get('company_code') == null){
+            $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
+        }
+        $company_code = $this->get('company_code');
+        $data = $this->M_master->getDataWhere2('company_code', $company_code, 'MST_ADMCOMPANY');
+        $this->response($data, 200);         
+    }
+
+	function last_no_get()
     {
         $param = $this->get('data');
         $table = $this->get('table');
@@ -98,8 +107,6 @@ class Master_data extends REST_Controller {
             $return = array("status" => "error", "error" => 0);
        }
         $this->response($return, 200);
-    }
-
-    //Masukan function selanjutnya disini
+    }    //Masukan function selanjutnya disini
 }
 ?>
