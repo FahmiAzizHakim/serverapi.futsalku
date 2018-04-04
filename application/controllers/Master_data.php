@@ -12,13 +12,13 @@ class Master_data extends REST_Controller {
         $this->load->model('M_master');
     }
 
-    // function index_get() {
-    //     $table = $this->get('table');
-    //     if ($table != '') {
-    //         $data = $this->db->get($table)->result();
-    //     }
-    //     $this->response($data, 200);
-    // }
+     function index_get() {
+         $table = $this->get('table');
+         if ($table != '') {
+             $data = $this->db->get($table)->result();
+         }
+         $this->response($data, 200);
+     }
  
     function data_field_get() {
         if($this->get('company_code') == null){
@@ -136,10 +136,10 @@ class Master_data extends REST_Controller {
        $param = array("store_goods_code" => $this->post("field_code"),
                     "store_goods_name" => $this->post("field_name"),
                     "store_goods_type" => $this->post("field_type"),
-                    "store_goods_desc" => "",
+                    "store_goods_desc" => $this->post("field_desc"),
                     "company_code" => $this->post("company_code"),
                     "store_goods_price" => $this->post("field_price"),
-                    "active_status" => $this->post("active_status"),
+                    "activestatus" => $this->post("activestatus"),
                     "created_date" => date('d/m/Y'),
                     "created_by" => $this->post("created_by"),
                     "lastupd_date" => date('d/m/Y'),
