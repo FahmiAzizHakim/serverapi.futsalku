@@ -65,6 +65,41 @@ class Master_data extends REST_Controller {
         $this->response($data, 200);         
     }
 
+    function last_no_get()
+    {
+        $param = $this->get('data');
+        $table = $this->get('table');
+        $company_code = $this->get('company_code');
+        $data = $this->M_master->getLastNo($param, $table, $company_code);
+        $field_no = $data['data'];
+        $this->response($data, 200);
+    }
+
+    function field_insert_post(){
+       $param = array("field_name" => $this->post("field_name"),
+                    "field_no" => $this->post("field_no"),
+                    "field_room" => $this->post("field_room"),
+                    "field_type" => $this->post("field_type"),
+                    "field_ball" => $this->post("field_ball"),
+                    "field_book_price" => $this->post("field_book_price"),
+                    "activestatus" => $this->post("activestatus"),
+                    "company_code" => $this->post("company_code"),
+                    "created_date" => date('d/m/Y'),
+                    "created_by" => $this->post("created_by"),
+                    "lastupd_date" => date('d/m/Y'),
+                    "lastupd_by" => $this->post("created_by"),
+                    "lastupd_process" => "insert");
+
+       $process = $this->M_master->save('MST_ADMFIELDS',$param);
+
+       if ($process == true) {
+           $return = array("status" => "success", "error" => 0);
+       }else{
+            $return = array("status" => "error", "error" => 0);
+       }
+        $this->response($return, 200);
+    }
+
     //Masukan function selanjutnya disini
 }
 ?>
