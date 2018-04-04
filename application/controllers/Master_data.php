@@ -109,7 +109,7 @@ class Master_data extends REST_Controller {
         $this->response($return, 200);
     }    //Masukan function selanjutnya disini
 
-     function field_insert_user_post(){
+    function field_insert_user_post(){
        $param = array("field_code" => $this->post("field_code"),
                     "field_name" => $this->post("field_name"),
                     "field_password" => $this->post("field_password"),
@@ -130,6 +130,30 @@ class Master_data extends REST_Controller {
             $return = array("status" => "error", "error" => 0);
        }
         $this->response($return, 200);
-    }  
+    }
+
+    function field_insert_goods_post(){
+       $param = array("field_code" => $this->post("field_code"),
+                    "field_name" => $this->post("field_name"),
+                    "field_type" => $this->post("field_type"),
+                    "field_desc" => "",
+                    "company_code" => $this->post("company_code"),
+                    "field_price" => $this->post("field_price"),
+                    "active_status" => $this->post("active_status"),
+                    "created_date" => date('d/m/Y'),
+                    "created_by" => $this->post("created_by"),
+                    "lastupd_date" => date('d/m/Y'),
+                    "lastupd_by" => $this->post("created_by"),
+                    "lastupd_process" => "insert");
+
+       $process = $this->M_master->save('MST_ADMSTOREGOODS',$param);
+
+       if ($process == true) {
+           $return = array("status" => "success", "error" => 0);
+       }else{
+            $return = array("status" => "error", "error" => 0);
+       }
+        $this->response($return, 200);
+    }    
 }
 ?>
