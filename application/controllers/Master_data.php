@@ -110,10 +110,10 @@ class Master_data extends REST_Controller {
     }    //Masukan function selanjutnya disini
 
     function field_insert_user_post(){
-       $param = array("field_code" => $this->post("field_code"),
-                    "field_name" => $this->post("field_name"),
-                    "field_password" => $this->post("field_password"),
-                    "field_role" => $this->post("field_role"),
+       $param = array("user_code" => $this->post("field_code"),
+                    "user_name" => $this->post("field_name"),
+                    "user_password" => $this->post("field_password"),
+                    "user_group" => $this->post("field_role"),
                     "company_code" => $this->post("company_code"),
                     "activestatus" => $this->post("activestatus"),
                     "created_date" => date('d/m/Y'),
@@ -133,12 +133,12 @@ class Master_data extends REST_Controller {
     }
 
     function field_insert_goods_post(){
-       $param = array("field_code" => $this->post("field_code"),
-                    "field_name" => $this->post("field_name"),
-                    "field_type" => $this->post("field_type"),
-                    "field_desc" => "",
+       $param = array("store_goods_code" => $this->post("field_code"),
+                    "store_goods_name" => $this->post("field_name"),
+                    "store_goods_type" => $this->post("field_type"),
+                    "store_goods_desc" => "",
                     "company_code" => $this->post("company_code"),
-                    "field_price" => $this->post("field_price"),
+                    "store_goods_price" => $this->post("field_price"),
                     "active_status" => $this->post("active_status"),
                     "created_date" => date('d/m/Y'),
                     "created_by" => $this->post("created_by"),
