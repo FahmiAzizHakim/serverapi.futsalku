@@ -43,5 +43,17 @@ class M_master extends CI_Model {
 		$this->db->where('activestatus', 'ATSAC');
 		return $this->db->get($table)->row_array();
 	}
+
+	function update($where, $id, $data, $table)
+	{
+		$this->db->where($where, $id);
+		$this->db->update($table, $data);
+	}
+
+	function del($id, $kolom, $table)
+	{
+		$this->db->where($kolom, $id);
+		$this->db->delete($table);
+	}
 }
 ?>
