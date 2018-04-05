@@ -154,6 +154,32 @@ class Master_data extends REST_Controller {
             $return = array("status" => "error", "error" => 0);
        }
         $this->response($return, 200);
+    }
+
+    function field_update_maindata_post(){
+        $param = $this->post("futsal_id");
+        $data = array("company_code" => $this->post("company_code"),
+                    "company_name" => $this->post("futsal_name"),
+                    "company_owner" => $this->post("futsal_owner"),
+                    "company_districtcode" => $this->post("futsal_place"),
+                    "company_address" => $this->post("futsal_address"),
+                    "company_email" => $this->post("futsal_email"),
+                    "company_phone1" => $this->post("futsal_phone1"),
+                    "company_phone2" => $this->post("futsal_phone2"),
+                    "company_open_hour" => $this->post("company_open_hour"),
+                    "company_close_hour" => $this->post("company_close_hour"),
+                    "lastupd_date" => date('d/m/Y'),
+                    "lastupd_by" => $this->post("created_by"),
+                    "lastupd_process" => "update");
+
+       $process = $this->M_master->update('company_id', $param , $data, 'MST_ADMCOMPANY');
+
+       if ($process == true) {
+           $return = array("status" => "success", "error" => 0);
+       }else{
+            $return = array("status" => "error", "error" => 0);
+       }
+        $this->response($return, 200); 
     }    
 }
 ?>

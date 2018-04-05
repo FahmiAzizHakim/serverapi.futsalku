@@ -48,6 +48,7 @@ class M_master extends CI_Model {
 	{
 		$this->db->where($where, $id);
 		$this->db->update($table, $data);
+		return true;
 	}
 
 	function del($id, $kolom, $table)
