@@ -74,6 +74,19 @@ class Master_data extends REST_Controller {
         $this->response($data, 200);         
     }
 
+    function single_field_get(){
+        $company_code = $this->get('company_code');
+        $id = $this->get('id');
+       if($company_code == null){
+            $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
+        }
+        if($id == null){
+            $this->response('Parameter id not found', REST_Controller::HTTP_NOT_FOUND);
+        }
+        $data = $this->M_master->single_data_get($company_code, "field_id", $id, 'MST_ADMFIELDS');
+        $this->response($data, 200);         
+    }
+
     function single_user_get(){
         $company_code = $this->get('company_code');
         $id = $this->get('id');
