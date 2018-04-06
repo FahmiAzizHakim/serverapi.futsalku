@@ -44,7 +44,7 @@ class M_master extends CI_Model {
 		return $this->db->get($table)->row_array();
 	}
 
-	function single_user_get($company_code, $coloumn, $id, $table)
+	function single_data_get($company_code, $coloumn, $id, $table)
 	{
 		$this->db->where('company_code', $company_code);
 		$this->db->where('activestatus', 'ATSAC');

@@ -83,7 +83,7 @@ class Master_data extends REST_Controller {
         if($id == null){
             $this->response('Parameter id not found', REST_Controller::HTTP_NOT_FOUND);
         }
-        $data = $this->M_master->getSingleData($company_code, "user_id", $id, 'MST_ADMUSER');
+        $data = $this->M_master->single_data_get($company_code, "user_id", $id, 'MST_ADMUSER');
         $this->response($data, 200);         
     }
 
@@ -154,8 +154,9 @@ class Master_data extends REST_Controller {
                     "lastupd_by" => $this->post("lastupd_by"),
                     "lastupd_process" => "update");
        $user_id = $this->post("user_id");
+       $where = "user_id";
 
-       $process = $this->M_master->save('MST_ADMUSER',$param);
+       $process = $this->M_master->update($where, $user_id ,$param, 'MST_ADMUSER');
 
        if ($process == true) {
            $return = array("status" => "success", "error" => 0);
