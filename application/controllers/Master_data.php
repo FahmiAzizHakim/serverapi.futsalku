@@ -74,6 +74,19 @@ class Master_data extends REST_Controller {
         $this->response($data, 200);         
     }
 
+    function single_user_get(){
+        $company_code = $this->get('company_code');
+        $id = $this->get('id');
+       if($company_code == null){
+            $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
+        }
+        if($id == null){
+            $this->response('Parameter id not found', REST_Controller::HTTP_NOT_FOUND);
+        }
+        $data = $this->M_master->getSingleData($company_code, "user_id", $id, 'MST_ADMUSER');
+        $this->response($data, 200);         
+    }
+
 	function last_no_get()
     {
         $param = $this->get('data');
@@ -112,7 +125,7 @@ class Master_data extends REST_Controller {
     function field_insert_user_post(){
        $param = array("user_code" => $this->post("field_code"),
                     "user_name" => $this->post("field_name"),
-                    "user_password" => $this->post("field_password"),
+                    "user_password" => md5(substr(sha1($this->post("field_password") . 'reds'),1,20)),
                     "user_group" => $this->post("field_role"),
                     "company_code" => $this->post("company_code"),
                     "activestatus" => $this->post("activestatus"),
@@ -121,6 +134,26 @@ class Master_data extends REST_Controller {
                     "lastupd_date" => date('d/m/Y'),
                     "lastupd_by" => $this->post("created_by"),
                     "lastupd_process" => "insert");
+
+       $process = $this->M_master->save('MST_ADMUSER',$param);
+
+       if ($process == true) {
+           $return = array("status" => "success", "error" => 0);
+       }else{
+            $return = array("status" => "error", "error" => 0);
+       }
+        $this->response($return, 200);
+    }
+
+    function field_update_user_post(){
+       $param = array("user_password" => md5(substr(sha1($this->post("field_password") . 'reds'),1,20)),
+                    "user_group" => $this->post("field_role"),
+                    "company_code" => $this->post("company_code"),
+                    "activestatus" => $this->post("activestatus"),
+                    "lastupd_date" => date('d/m/Y'),
+                    "lastupd_by" => $this->post("lastupd_by"),
+                    "lastupd_process" => "update");
+       $user_id = $this->post("user_id");
 
        $process = $this->M_master->save('MST_ADMUSER',$param);
 

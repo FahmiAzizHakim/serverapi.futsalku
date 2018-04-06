@@ -14,7 +14,7 @@ class Auth extends REST_Controller {
 
     function check_user_post() {
      $username = $this->post('username');
-     $password = $this->post('password');
+     $password = md5(substr(sha1($this->post('password') . 'reds'),1,20));
 
     $cek = $this->M_auth->cek_user($username, $password)->num_rows();
     $get = $this->M_auth->cek_user($username, $password)->result();
