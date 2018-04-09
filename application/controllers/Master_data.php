@@ -227,6 +227,30 @@ class Master_data extends REST_Controller {
             $return = array("status" => "error", "error" => 0);
        }
         $this->response($return, 200); 
-    }    
+    }
+
+    function field_update_post(){
+       $param = array("field_name" => $this->post("field_name"),
+                    "field_room" => $this->post("field_room"),
+                    "field_type" => $this->post("field_type"),
+                    "field_ball" => $this->post("field_ball"),
+                    "field_book_price" => $this->post("field_book_price"),
+                    "activestatus" => $this->post("activestatus"),
+                    "lastupd_date" => date('d/m/Y'),
+                    "lastupd_by" => $this->post("created_by"),
+                    "lastupd_process" => "update");
+       $user_id = $this->post("field_no");
+       $where = "field_id";
+
+       $process = $this->M_master->update($where, $user_id ,$param, 'MST_ADMFIELDS');
+
+       if ($process == true) {
+           $return = array("status" => "success", "error" => 0);
+       }else{
+            $return = array("status" => "error", "error" => 0);
+       }
+        $this->response($return, 200);
+    }
+    
 }
 ?>
