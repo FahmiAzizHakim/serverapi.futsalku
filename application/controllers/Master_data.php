@@ -100,6 +100,20 @@ class Master_data extends REST_Controller {
         $this->response($data, 200);         
     }
 
+    function single_goods_get(){
+        $company_code = $this->get('company_code');
+        $id = $this->get('id');
+       if($company_code == null){
+            $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
+        }
+        if($id == null){
+            $this->response('Parameter id not found', REST_Controller::HTTP_NOT_FOUND);
+        }
+        $data = $this->M_master->single_data_get($company_code, "store_goods_id", $id, 'MST_ADMSTOREGOODS');
+        $this->response($data, 200);         
+    }
+
+
 	function last_no_get()
     {
         $param = $this->get('data');
@@ -194,6 +208,32 @@ class Master_data extends REST_Controller {
                     "lastupd_process" => "insert");
 
        $process = $this->M_master->save('MST_ADMSTOREGOODS',$param);
+
+       if ($process == true) {
+           $return = array("status" => "success", "error" => 0);
+       }else{
+            $return = array("status" => "error", "error" => 0);
+       }
+        $this->response($return, 200);
+    }
+
+    function field_update_goods_post(){
+       $param = array("store_goods_code" => $this->post("field_code"),
+                    "store_goods_name" => $this->post("field_name"),
+                    "store_goods_type" => $this->post("field_type"),
+                    "store_goods_desc" => $this->post("field_desc"),
+                    "company_code" => $this->post("company_code"),
+                    "store_goods_price" => $this->post("field_price"),
+                    "activestatus" => $this->post("activestatus"),
+                    "created_date" => date('d/m/Y'),
+                    "created_by" => $this->post("created_by"),
+                    "lastupd_date" => date('d/m/Y'),
+                    "lastupd_by" => $this->post("created_by"),
+                    "lastupd_process" => "update");
+       $store_goods_id = $this->post("store_goods_id");
+       $where = "store_goods_id";
+
+       $process = $this->M_master->update($where, $store_goods_id ,$param, 'MST_ADMUSER');
 
        if ($process == true) {
            $return = array("status" => "success", "error" => 0);
