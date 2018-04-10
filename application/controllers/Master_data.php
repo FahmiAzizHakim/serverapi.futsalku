@@ -228,12 +228,12 @@ class Master_data extends REST_Controller {
                     "created_date" => date('d/m/Y'),
                     "created_by" => $this->post("created_by"),
                     "lastupd_date" => date('d/m/Y'),
-                    "lastupd_by" => $this->post("created_by"),
+                    "lastupd_by" => $this->post("lastupd_by"),
                     "lastupd_process" => "update");
        $store_goods_id = $this->post("store_goods_id");
        $where = "store_goods_id";
 
-       $process = $this->M_master->update($where, $store_goods_id ,$param, 'MST_ADMUSER');
+       $process = $this->M_master->update($where, $store_goods_id ,$param, 'MST_ADMSTOREGOODS');
 
        if ($process == true) {
            $return = array("status" => "success", "error" => 0);
