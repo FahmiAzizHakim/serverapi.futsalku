@@ -128,11 +128,11 @@ class Booking_data extends REST_Controller {
                     "trx_grandtotal_price" => $this->post("trx_grandtotal_price"),
                     "activestatus" => $this->post("activestatus"),
                     "company_code" => $this->post("company_code"),
-                    "created_date" => date('d/m/Y'),
-                    "created_by" => $this->post("created_by"),
+                    "created_date" => $this->post("created_date"),
+                    "created_by" => $this->post("created_by2"),
                     "lastupd_date" => date('d/m/Y'),
                     "lastupd_by" => $this->post("created_by"),
-                    "lastupd_process" => "insert");
+                    "lastupd_process" => "Update");
 
        $process_del_m = $this->M_master->del($param_master["trx_no"],'trx_no','TRX_FIELDBOOKING');
        $process_del_d = $this->M_master->del($param_master["trx_no"],'trx_no','TRX_FIELDBOOKINGDTL');
@@ -147,9 +147,9 @@ class Booking_data extends REST_Controller {
                     "company_code" => $this->post("company_code"),
                     "created_date" => date('d/m/Y'),
                     "created_by" => $this->post("created_by"),
-                    "lastupd_date" => date('d/m/Y'),
-                    "lastupd_by" => $this->post("created_by"),
-                    "lastupd_process" => "insert");
+                    "lastupd_date" => $this->post("created_date"),
+                    "lastupd_by" => $this->post("created_by2"),
+                    "lastupd_process" => "Update");
         $process_d = $this->M_master->save('TRX_FIELDBOOKINGDTL',$param_detail); 
        }
    
