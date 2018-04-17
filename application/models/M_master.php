@@ -64,5 +64,6 @@ class M_master extends CI_Model {
 		$this->db->where($kolom, $id);
 		$this->db->delete($table);
 	}
+
 }
 ?>
