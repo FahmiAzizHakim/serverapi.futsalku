@@ -12,16 +12,6 @@ class Booking_data extends REST_Controller {
         $this->load->model('M_master');
     }
 
-	function last_no_get()
-    {
-        $param = $this->get('data');
-        $table = $this->get('table');
-        $company_code = $this->get('company_code');
-        $data = $this->M_master->getLastNo($param, $table, $company_code);
-        $field_no = $data['data'];
-        $this->response($data, 200);
-    }
-
     function data_field_get() {
         if($this->get('company_code') == null){
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
