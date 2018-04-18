@@ -25,7 +25,7 @@ class Master_data extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_code = $this->get('company_code');
-        $data = $this->M_master->getDataWhere('company_code', $company_code, 'MST_ADMFIELDS');
+        $data = $this->M_master->getDataWhere('company_code', $company_code, 'V_MST_FIELDS');
         $this->response($data, 200);
     }
 
@@ -43,7 +43,7 @@ class Master_data extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_code = $this->get('company_code');
-        $data = $this->M_master->getDataWhere('company_code', $company_code, 'MST_ADMUSER');
+        $data = $this->M_master->getDataWhere('company_code', $company_code, 'V_MST_USERS');
         $this->response($data, 200);
     }
 
@@ -61,7 +61,7 @@ class Master_data extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_code = $this->get('company_code');
-        $data = $this->M_master->getDataWhere('company_code', $company_code, 'MST_ADMSTOREGOODS');
+        $data = $this->M_master->getDataWhere('company_code', $company_code, 'V_MST_STOREGOODS');
         $this->response($data, 200);         
     }
 
