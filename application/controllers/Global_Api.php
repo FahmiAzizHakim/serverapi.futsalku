@@ -32,3 +32,4 @@ class Global_Api extends REST_Controller {
     }
 
 }
+?>
