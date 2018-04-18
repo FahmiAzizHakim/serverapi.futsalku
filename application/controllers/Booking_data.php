@@ -72,7 +72,7 @@ class Booking_data extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_code = $this->get('company_code');
-        $data = $this->M_master->getDataWhere('company_code', $company_code, 'TRX_FIELDBOOKING');
+        $data = $this->M_master->getDataWhere('company_code', $company_code, 'V_TRX_FIELDBOOKING');
         $this->response($data, 200);
     }
 
