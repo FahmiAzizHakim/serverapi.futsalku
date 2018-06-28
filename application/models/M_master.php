@@ -65,5 +65,12 @@ class M_master extends CI_Model {
 		$this->db->delete($table);
 	}
 
+	function getDataView($where1, $param1,$where2, $param2, $table)
+	{
+		$this->db->where($where1, $param1);
+		$this->db->where($where2, $param2);
+		return $this->db->get($table)->result();
+	}
+
 }
 ?>

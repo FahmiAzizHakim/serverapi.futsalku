@@ -130,11 +130,11 @@ class Master_data extends REST_Controller {
         $this->response($return, 200);
     }    //Masukan function selanjutnya disini
 
-    function field_insert_user_post(){
-       $param = array("user_code" => $this->post("field_code"),
-                    "user_name" => $this->post("field_name"),
-                    "user_password" => md5(substr(sha1($this->post("field_password") . 'reds'),1,20)),
-                    "user_group" => $this->post("field_role"),
+    function user_insert_post(){
+       $param = array("user_code" => $this->post("user_code"),
+                    "user_name" => $this->post("user_name"),
+                    "user_password" => md5(substr(sha1($this->post("user_password") . 'reds'),1,20)),
+                    "user_group" => $this->post("user_role"),
                     "company_code" => $this->post("company_code"),
                     "activestatus" => $this->post("activestatus"),
                     "created_date" => date('d/m/Y'),
@@ -153,34 +153,33 @@ class Master_data extends REST_Controller {
         $this->response($return, 200);
     }
 
-    function field_update_user_post(){
-       $param = array("user_password" => md5(substr(sha1($this->post("field_password") . 'reds'),1,20)),
-                    "user_group" => $this->post("field_role"),
+    function user_update_post(){
+        $param = $this->post("user_id");
+        $data = array("user_password" => md5(substr(sha1($this->post("user_password") . 'reds'),1,20)),
+                    "user_group" => $this->post("user_role"),
                     "company_code" => $this->post("company_code"),
                     "activestatus" => $this->post("activestatus"),
                     "lastupd_date" => date('d/m/Y'),
                     "lastupd_by" => $this->post("lastupd_by"),
                     "lastupd_process" => "update");
-       $user_id = $this->post("user_id");
-       $where = "user_id";
 
-       $process = $this->M_master->update($where, $user_id ,$param, 'MST_ADMUSER');
+       $process = $this->M_master->update('user_id', $param , $data, 'MST_ADMUSER');
 
        if ($process == true) {
            $return = array("status" => "success", "error" => 0);
        }else{
             $return = array("status" => "error", "error" => 0);
        }
-        $this->response($return, 200);
+        $this->response($return, 200); 
     }
 
-    function field_insert_goods_post(){
-       $param = array("store_goods_code" => $this->post("field_code"),
-                    "store_goods_name" => $this->post("field_name"),
-                    "store_goods_type" => $this->post("field_type"),
-                    "store_goods_desc" => $this->post("field_desc"),
+    function goods_insert_post(){
+       $param = array("store_goods_code" => $this->post("goods_code"),
+                    "store_goods_name" => $this->post("goods_name"),
+                    "store_goods_type" => $this->post("goods_type"),
+                    "store_goods_desc" => $this->post("goods_desc"),
                     "company_code" => $this->post("company_code"),
-                    "store_goods_price" => $this->post("field_price"),
+                    "store_goods_price" => $this->post("goods_price"),
                     "activestatus" => $this->post("activestatus"),
                     "created_date" => date('d/m/Y'),
                     "created_by" => $this->post("created_by"),
@@ -198,23 +197,20 @@ class Master_data extends REST_Controller {
         $this->response($return, 200);
     }
 
-    function field_update_goods_post(){
-       $param = array("store_goods_code" => $this->post("field_code"),
-                    "store_goods_name" => $this->post("field_name"),
-                    "store_goods_type" => $this->post("field_type"),
-                    "store_goods_desc" => $this->post("field_desc"),
+    function goods_update_post(){
+       $param = $this->post("goods_id");
+       $data = array("store_goods_code" => $this->post("goods_code"),
+                    "store_goods_name" => $this->post("goods_name"),
+                    "store_goods_type" => $this->post("goods_type"),
+                    "store_goods_desc" => $this->post("goods_desc"),
                     "company_code" => $this->post("company_code"),
-                    "store_goods_price" => $this->post("field_price"),
+                    "store_goods_price" => $this->post("goods_price"),
                     "activestatus" => $this->post("activestatus"),
-                    "created_date" => date('d/m/Y'),
-                    "created_by" => $this->post("created_by"),
                     "lastupd_date" => date('d/m/Y'),
                     "lastupd_by" => $this->post("lastupd_by"),
                     "lastupd_process" => "update");
-       $store_goods_id = $this->post("store_goods_id");
-       $where = "store_goods_id";
 
-       $process = $this->M_master->update($where, $store_goods_id ,$param, 'MST_ADMSTOREGOODS');
+       $process = $this->M_master->update('store_goods_id', $param ,$data, 'MST_ADMSTOREGOODS');
 
        if ($process == true) {
            $return = array("status" => "success", "error" => 0);
@@ -229,7 +225,6 @@ class Master_data extends REST_Controller {
         $data = array("company_code" => $this->post("company_code"),
                     "company_name" => $this->post("futsal_name"),
                     "company_owner" => $this->post("futsal_owner"),
-                    "company_districtcode" => $this->post("futsal_place"),
                     "company_address" => $this->post("futsal_address"),
                     "company_email" => $this->post("futsal_email"),
                     "company_phone1" => $this->post("futsal_phone1"),
