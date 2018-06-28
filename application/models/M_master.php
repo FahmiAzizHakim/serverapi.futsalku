@@ -25,7 +25,7 @@ class M_master extends CI_Model {
 	{
 		$this->db->where('code_category', $param);
 		$this->db->where('activestatus', 'ATSAC');
-		return $this->db->get('GLB_DTACODE')->result();
+		return $this->db->get('glb_dtacode')->result();
 	}
 
 	function save($table, $data)

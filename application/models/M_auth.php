@@ -7,6 +7,6 @@ class M_auth extends CI_Model {
 		$this->db->where('user_code', $username);
 		$this->db->where('activestatus', 'ATSAC');
 		$this->db->where('user_password', $password);
-		return $this->db->get('MST_ADMUSER');
+		return $this->db->get('mst_admuser');
 	}
 }

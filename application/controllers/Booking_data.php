@@ -17,7 +17,7 @@ class Booking_data extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_code = $this->get('company_code');
-        $data = $this->M_master->getDataWhere('company_code', $company_code, 'MST_ADMFIELDS');
+        $data = $this->M_master->getDataWhere('company_code', $company_code, 'mst_admfields');
         $this->response($data, 200);
     }
 
@@ -41,7 +41,7 @@ class Booking_data extends REST_Controller {
                     "lastupd_date" => date('d/m/Y'),
                     "lastupd_by" => $this->post("created_by"),
                     "lastupd_process" => "insert");
-       $process_m = $this->M_master->save('TRX_FIELDBOOKING',$param_master);
+       $process_m = $this->M_master->save('trx_fieldbooking',$param_master);
 
        for ($i=1; $i <= $param_master["trx_of_hours"]; $i++) { 
         $param_detail = array("trx_no" => $this->post("trx_no"),
@@ -55,7 +55,7 @@ class Booking_data extends REST_Controller {
                     "lastupd_date" => date('d/m/Y'),
                     "lastupd_by" => $this->post("created_by"),
                     "lastupd_process" => "insert");
-        $process_d = $this->M_master->save('TRX_FIELDBOOKINGDTL',$param_detail); 
+        $process_d = $this->M_master->save('trx_fieldbookingdtl',$param_detail); 
        }
    
 
@@ -72,7 +72,7 @@ class Booking_data extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_code = $this->get('company_code');
-        $data = $this->M_master->getDataWhere('company_code', $company_code, 'V_TRX_FIELDBOOKING');
+        $data = $this->M_master->getDataWhere('company_code', $company_code, 'v_trx_fieldbooking');
         $this->response($data, 200);
     }
 
@@ -84,8 +84,8 @@ class Booking_data extends REST_Controller {
        $param_trx = $this->post("param_no");
        $where = "trx_no";
 
-       $process_m = $this->M_master->update($where, $param_trx ,$param, 'TRX_FIELDBOOKING');
-       $process_d = $this->M_master->update($where, $param_trx ,$param, 'TRX_FIELDBOOKINGDTL');
+       $process_m = $this->M_master->update($where, $param_trx ,$param, 'trx_fieldbooking');
+       $process_d = $this->M_master->update($where, $param_trx ,$param, 'trx_fieldbookingdtl');
        if ($process_m == true && $process_d == true) {
            $return = array("status" => "success", "error" => 0);
        }else{
@@ -99,7 +99,7 @@ class Booking_data extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $data_param = $this->get('data');
-        $data = $this->M_master->getDataWhere2('trx_no', $data_param, 'TRX_FIELDBOOKING');
+        $data = $this->M_master->getDataWhere2('trx_no', $data_param, 'trx_fieldbooking');
         $this->response($data, 200);
     }
 
@@ -124,9 +124,9 @@ class Booking_data extends REST_Controller {
                     "lastupd_by" => $this->post("created_by"),
                     "lastupd_process" => "Update");
 
-       $process_del_m = $this->M_master->del($param_master["trx_no"],'trx_no','TRX_FIELDBOOKING');
-       $process_del_d = $this->M_master->del($param_master["trx_no"],'trx_no','TRX_FIELDBOOKINGDTL');
-       $process_m = $this->M_master->save('TRX_FIELDBOOKING',$param_master);
+       $process_del_m = $this->M_master->del($param_master["trx_no"],'trx_no','trx_fieldbooking');
+       $process_del_d = $this->M_master->del($param_master["trx_no"],'trx_no','trx_fieldbookingdtl');
+       $process_m = $this->M_master->save('trx_fieldbooking',$param_master);
 
        for ($i=1; $i <= $param_master["trx_of_hours"]; $i++) { 
         $param_detail = array("trx_no" => $this->post("trx_no"),
@@ -140,7 +140,7 @@ class Booking_data extends REST_Controller {
                     "lastupd_date" => $this->post("created_date"),
                     "lastupd_by" => $this->post("created_by2"),
                     "lastupd_process" => "Update");
-        $process_d = $this->M_master->save('TRX_FIELDBOOKINGDTL',$param_detail); 
+        $process_d = $this->M_master->save('trx_fieldbookingdtl',$param_detail); 
        }
    
 

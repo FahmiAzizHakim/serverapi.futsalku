@@ -18,7 +18,7 @@ class Pembayaran_data extends REST_Controller {
             $this->response('Parameter param_no not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $param_no = $param_no;
-        $data = $this->M_master->getDataWhere2('trx_no', $param_no, 'TRX_FIELDBOOKING');
+        $data = $this->M_master->getDataWhere2('trx_no', $param_no, 'trx_fieldbooking');
        	return $data;
     }
 
@@ -28,7 +28,7 @@ class Pembayaran_data extends REST_Controller {
             $this->response('Parameter param_no not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $param_no = $param_no;
-        $data = $this->M_master->getDataWhere('trx_no', $param_no, 'TRX_FIELDBOOKINGDTL');
+        $data = $this->M_master->getDataWhere('trx_no', $param_no, 'trx_fieldbookingdtl');
         return $data;         
     }
 
@@ -54,7 +54,7 @@ class Pembayaran_data extends REST_Controller {
                     "lastupd_by" => $user_name,
                     "lastupd_process" => "insert");
         // print_r($param_master);
-       	$process_m = $this->M_master->save('FIN_HISTORY',$param_master);
+       	$process_m = $this->M_master->save('fin_history',$param_master);
 
         $get_ddbooking = $this->data_dbooking_post($param_no);
         $get_ddbooking = json_decode( json_encode($get_ddbooking), true);
@@ -73,7 +73,7 @@ class Pembayaran_data extends REST_Controller {
                     "lastupd_by" => $user_name,
                     "lastupd_process" => "insert");
         // print_r($ins_detail);
-        $process_d = $this->M_master->save('FIN_HISTORYDTL',$ins_detail);
+        $process_d = $this->M_master->save('fin_historydtl',$ins_detail);
         }
    	   	if ($process_m == true) {
            $return = array("status" => "success", "error" => 0);

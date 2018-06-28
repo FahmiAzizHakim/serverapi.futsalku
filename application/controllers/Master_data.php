@@ -25,7 +25,7 @@ class Master_data extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_code = $this->get('company_code');
-        $data = $this->M_master->getDataWhere('company_code', $company_code, 'V_MST_FIELDS');
+        $data = $this->M_master->getDataWhere('company_code', $company_code, 'v_mst_fields');
         $this->response($data, 200);
     }
 
@@ -34,7 +34,7 @@ class Master_data extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_code = $this->get('company_code');
-        $data = $this->M_master->getDataWhere('company_code', $company_code, 'MST_ADMMEMBERS');
+        $data = $this->M_master->getDataWhere('company_code', $company_code, 'mst_admmembers');
         $this->response($data, 200);
     }
 
@@ -43,7 +43,7 @@ class Master_data extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_code = $this->get('company_code');
-        $data = $this->M_master->getDataWhere('company_code', $company_code, 'V_MST_USERS');
+        $data = $this->M_master->getDataWhere('company_code', $company_code, 'v_mst_users');
         $this->response($data, 200);
     }
 
@@ -61,7 +61,7 @@ class Master_data extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_code = $this->get('company_code');
-        $data = $this->M_master->getDataWhere('company_code', $company_code, 'V_MST_STOREGOODS');
+        $data = $this->M_master->getDataWhere('company_code', $company_code, 'v_mst_storegoods');
         $this->response($data, 200);         
     }
 
@@ -74,7 +74,7 @@ class Master_data extends REST_Controller {
         if($id == null){
             $this->response('Parameter id not found', REST_Controller::HTTP_NOT_FOUND);
         }
-        $data = $this->M_master->single_data_get($company_code, "field_id", $id, 'MST_ADMFIELDS');
+        $data = $this->M_master->single_data_get($company_code, "field_id", $id, 'mst_admfields');
         $this->response($data, 200);         
     }
 
@@ -87,7 +87,7 @@ class Master_data extends REST_Controller {
         if($id == null){
             $this->response('Parameter id not found', REST_Controller::HTTP_NOT_FOUND);
         }
-        $data = $this->M_master->single_data_get($company_code, "user_id", $id, 'MST_ADMUSER');
+        $data = $this->M_master->single_data_get($company_code, "user_id", $id, 'mst_admuser');
         $this->response($data, 200);         
     }
 
@@ -100,7 +100,7 @@ class Master_data extends REST_Controller {
         if($id == null){
             $this->response('Parameter id not found', REST_Controller::HTTP_NOT_FOUND);
         }
-        $data = $this->M_master->single_data_get($company_code, "store_goods_id", $id, 'MST_ADMSTOREGOODS');
+        $data = $this->M_master->single_data_get($company_code, "store_goods_id", $id, 'mst_admstoregoods');
         $this->response($data, 200);         
     }
 
@@ -120,7 +120,7 @@ class Master_data extends REST_Controller {
                     "lastupd_by" => $this->post("created_by"),
                     "lastupd_process" => "insert");
 
-       $process = $this->M_master->save('MST_ADMFIELDS',$param);
+       $process = $this->M_master->save('mst_admfields',$param);
 
        if ($process == true) {
            $return = array("status" => "success", "error" => 0);
@@ -143,7 +143,7 @@ class Master_data extends REST_Controller {
                     "lastupd_by" => $this->post("created_by"),
                     "lastupd_process" => "insert");
 
-       $process = $this->M_master->save('MST_ADMUSER',$param);
+       $process = $this->M_master->save('mst_admuser',$param);
 
        if ($process == true) {
            $return = array("status" => "success", "error" => 0);
@@ -187,7 +187,7 @@ class Master_data extends REST_Controller {
                     "lastupd_by" => $this->post("created_by"),
                     "lastupd_process" => "insert");
 
-       $process = $this->M_master->save('MST_ADMSTOREGOODS',$param);
+       $process = $this->M_master->save('mst_admstoregoods',$param);
 
        if ($process == true) {
            $return = array("status" => "success", "error" => 0);
@@ -210,7 +210,7 @@ class Master_data extends REST_Controller {
                     "lastupd_by" => $this->post("lastupd_by"),
                     "lastupd_process" => "update");
 
-       $process = $this->M_master->update('store_goods_id', $param ,$data, 'MST_ADMSTOREGOODS');
+       $process = $this->M_master->update('store_goods_id', $param ,$data, 'mst_admstoregoods');
 
        if ($process == true) {
            $return = array("status" => "success", "error" => 0);
@@ -235,7 +235,7 @@ class Master_data extends REST_Controller {
                     "lastupd_by" => $this->post("created_by"),
                     "lastupd_process" => "update");
 
-       $process = $this->M_master->update('company_id', $param , $data, 'MST_ADMCOMPANY');
+       $process = $this->M_master->update('company_id', $param , $data, 'mst_admcompany');
 
        if ($process == true) {
            $return = array("status" => "success", "error" => 0);
@@ -258,7 +258,7 @@ class Master_data extends REST_Controller {
        $user_id = $this->post("field_no");
        $where = "field_id";
 
-       $process = $this->M_master->update($where, $user_id ,$param, 'MST_ADMFIELDS');
+       $process = $this->M_master->update($where, $user_id ,$param, 'mst_admfields');
 
        if ($process == true) {
            $return = array("status" => "success", "error" => 0);

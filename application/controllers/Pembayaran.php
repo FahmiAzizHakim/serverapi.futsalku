@@ -18,7 +18,7 @@ class Pembayaran extends REST_Controller {
             $this->response('Parameter param_no not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $param_no = $this->post('param_no');
-        $data = $this->M_master->getDataWhere2('trx_no', $param_no, 'TRX_FIELDBOOKING');
+        $data = $this->M_master->getDataWhere2('trx_no', $param_no, 'trx_fieldbooking');
         $this->response($data, 200);         
     }
 
@@ -28,7 +28,7 @@ class Pembayaran extends REST_Controller {
             $this->response('Parameter param_no not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $param_no = $this->post('param_no');
-        $data = $this->M_master->getDataWhere('trx_no', $param_no, 'TRX_FIELDBOOKINGDTL');
+        $data = $this->M_master->getDataWhere('trx_no', $param_no, 'trx_fieldbookingdtl');
         $this->response($data, 200);         
     }
 

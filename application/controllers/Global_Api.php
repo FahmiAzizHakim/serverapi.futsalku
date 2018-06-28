@@ -27,7 +27,7 @@ class Global_Api extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_code = $this->get('company_code');
-        $data = $this->M_master->getDataWhere2('company_code', $company_code, 'MST_ADMCOMPANY');
+        $data = $this->M_master->getDataWhere2('company_code', $company_code, 'mst_admcompany');
         $this->response($data, 200);         
     }
 
@@ -36,7 +36,7 @@ class Global_Api extends REST_Controller {
             $this->response('Parameter company_code not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_code = $this->get('company_code');
-        $data = $this->M_master->getDataWhere('company_code', $company_code, 'MST_TIME');
+        $data = $this->M_master->getDataWhere('company_code', $company_code, 'mst_time');
         $this->response($data, 200);         
     }
 
@@ -45,7 +45,7 @@ class Global_Api extends REST_Controller {
             $this->response('Parameter company_districtcode not found', REST_Controller::HTTP_NOT_FOUND);
         }
         $company_districtcode = $this->get('company_districtcode');
-        $data = $this->M_master->getDataWhere2('district_code', $company_districtcode, 'GLB_GEODISTRICTS');
+        $data = $this->M_master->getDataWhere2('district_code', $company_districtcode, 'glb_geodistricts');
         $this->response($data, 200);         
     }
 
